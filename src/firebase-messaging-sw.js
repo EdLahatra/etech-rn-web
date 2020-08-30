@@ -1,7 +1,7 @@
 importScripts('https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/7.1.0/firebase-messaging.js');
 firebase.initializeApp({
-// Project Settings => Add Firebase to your web app
+  // Project Settings => Add Firebase to your web app
   apiKey: "AIzaSyB6YtFgsJvAs0--p-D3DS_DCdNc7aFchz0",
   authDomain: "projecttest-dc717.firebaseapp.com",
   databaseURL: "https://projecttest-dc717.firebaseio.com",
@@ -11,6 +11,7 @@ firebase.initializeApp({
   appId: "1:489900383908:web:bc3511b2a63186f1331031",
   measurementId: "G-YZH9ZX3MEP",
 });
+
 const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {
