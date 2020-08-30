@@ -1,0 +1,37 @@
+https://tools.arkeup.com/jenkins/view/poc_dev/job/poc_dev_react_mongo/
+
+https://tools.arkeup.com/jenkins/view/poc_dev/job/poc_dev_react_mongo_node/
+
+{
+  "email": "testAdmin@email.com",
+  "password": "testAdmin123"
+}
+
+reto no accès marina fa le nalefako mail iny incomplet :
+-Serveur : 35.195.207.222
+-Port : 27018
+-Utilisateur : poc_admin
+-Mot de passe : pm6S8jKSISOmPQHSkX
+-AuthenticationDatabase : admin
+
+mongo --host 35.195.207.222:27018
+
+mongo --username poc_admin --password pm6S8jKSISOmPQHSkX --authenticationDatabase admin --host 35.195.207.222 --port 27018
+
+mongodb://poc_admin:pm6S8jKSISOmPQHSkX@35.195.207.222:27018/admin
+
+db.createUser(
+...    {
+...      user: "pocUser",
+...      pwd: "poc2020",
+...      roles: [ "readWrite", "dbAdmin" ]
+...    }
+... )
+
+user1@user.com
+"p randrianandrasana" <p.randrianandrasana@etechconsulting-mg.com>; 
+
+Clé API Web
+AIzaSyC27n7428fenfnTdFNy6o3LXKgIE85VZFY
+
+AAAAchBWnqQ:APA91bEPgygG1MHBIWQN1fHxAXcAFV6n_ZrAqj20isePgNneg5260YlRcecVM2nLT8e8xyYyDkJ_u5xZJLH3khwiI1ypJVuQmai_Dc62dYQIVRJ46yyhw3aGu5zTIJNARfyCduQjfRde
