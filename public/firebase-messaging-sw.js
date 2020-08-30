@@ -43,47 +43,16 @@ self.addEventListener('notificationclick', function (event) {
   console.log({ event });
 });
 
-// const showLocalNotification = (title, body, swRegistration) => {
-//   var icon = './logo192.png';
-//   const options = {
-//     body,
-//     // here you can add more properties like icon, image, vibrate, etc.
-//     vibrate: [200, 100, 200],
-//     icon,
-//   };
-//   console.log({ title, body, swRegistration })
-//   swRegistration.showNotification(title, options);
-// };
-
-function showLocalNotification() {
-  const img = "/logo192.jpg";
-  const text = "Take a look at this brand new t-shirt!";
-  const title = "New Product Available";
-  const options = {
-    body: text,
-    icon: "/logo192.jpg",
-    vibrate: [200, 100, 200],
-    tag: "new-product",
-    image: img,
-    badge: "https://spyna.it/icons/android-icon-192x192.png",
-    actions: [{ action: "Detail", title: "View", icon: "https://via.placeholder.com/128/ff0000" }]
-  };
-  navigator.serviceWorker.ready.then(function(serviceWorker) {
-    serviceWorker.showNotification(title, options);
-  });
-}
-
 self.addEventListener('push', function(event) {
   console.log('Received a push message', event.currentTarget);
 
   var title = 'Yay a message.';
   var body = 'We have received a push message.';
 
-  // event.currentTarget.registration.showNotification(title, {
-  //   body: body,
-  //   icon: icon,
-  //   tag: tag,
-  //   data: data
-  // })
-  showLocalNotification(title, body, self.registration)
+  self.registration.showNotification(title, {
+    body: body,
+    icon: icon,
+    tag: tag,
+    data: data
+  })
 });
