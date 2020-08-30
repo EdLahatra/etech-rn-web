@@ -51,8 +51,11 @@ self.addEventListener('push', function(event) {
 
   self.registration.showNotification(title, {
     body: body,
-    icon: icon,
-    tag: tag,
-    data: data
-  })
+    // icon: icon,
+    // tag: tag,
+    data: body
+  });
+
+  // console.log({ clients });
+  // clients.postMessage();
 });

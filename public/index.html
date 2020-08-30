@@ -61,8 +61,8 @@
                 // firebase.messaging().useServiceWorker(registration);
                 console.log("Registration successful, scope is:", registration);
                 registration.showNotification('Successfully subscribed!', {body: 'TEST'});
-                const notify = Notification('Successfully subscribed!');
-                console.log({ Notification });
+                const notify = new Notification('Successfully subscribed!');
+                console.log({ notify });
               })
               .catch(function(err) {
                 console.log("Service worker registration failed, error:", err);
