@@ -1,5 +1,5 @@
-importScripts('https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js');
-importScripts('https://www.gstatic.com/firebasejs/7.1.0/firebase-messaging.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js');
+importScripts('https://www.gstatic.com/firebasejs/7.18.0/firebase-messaging.js');
 firebase.initializeApp({
 // Project Settings => Add Firebase to your web app
   apiKey: "AIzaSyB6YtFgsJvAs0--p-D3DS_DCdNc7aFchz0",
@@ -11,6 +11,7 @@ firebase.initializeApp({
   appId: "1:489900383908:web:bc3511b2a63186f1331031",
   measurementId: "G-YZH9ZX3MEP",
 });
+
 const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {
@@ -49,13 +50,9 @@ self.addEventListener('push', function(event) {
   var title = 'Yay a message.';
   var body = 'We have received a push message.';
 
-  self.registration.showNotification(title, {
+  event.currentTarget.registration.showNotification(title, {
     body: body,
-    // icon: icon,
-    // tag: tag,
     data: body
-  });
+  })
 
-  // console.log({ clients });
-  // clients.postMessage();
 });
