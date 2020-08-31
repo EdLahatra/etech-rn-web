@@ -55,9 +55,7 @@ class AppMain extends React.Component {
         .then(async function () {
           const token = await messaging.getToken();
           console.log({ token });
-          alert(token.toString());
           const notification = new Notification(token);
-          console.log({ notification });
         })
         .catch(function (err) {
           console.log('Unable to get permission to notify.', err);
