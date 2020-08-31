@@ -62,27 +62,23 @@ class AppMain extends React.Component {
         .catch(function (err) {
           console.log('Unable to get permission to notify.', err);
         });
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.addEventListener('message', (msg) => {
+          console.log({ msg });
+          console.log({ msg1: navigator.serviceWorker });
+        });
+    
+        navigator.serviceWorker.addEventListener('push', (push) => {
+          console.log({ push });
+          console.log({ msg1: navigator.serviceWorker });
+        });
+    
+        navigator.serviceWorker.addEventListener('onmessage', (onmessage) => {
+          console.log({ onmessage });
+          console.log({ msg1: navigator.serviceWorker });
+        });
+      }
     }
-    // console.log({ messaging });
-    // messaging.requestPermission()
-    //   .then(async function () {
-    //     const token = await messaging.getToken();
-    //     console.log({ token });
-    //   })
-    //   .catch(function (err) {
-    //     console.log('Unable to get permission to notify.', err);
-    //   });
-    // const test = messaging.firebaseDependencies;
-
-    // navigator.serviceWorker.addEventListener('message', (msg) => {
-    //   console.log({ msg });
-    //   console.log({ msg1: navigator.serviceWorker });
-    // });
-
-    // navigator.serviceWorker.addEventListener('push', (push) => {
-    //   console.log({ push });
-    //   console.log({ msg1: navigator.serviceWorker });
-    // });
   }
 
   render() {
