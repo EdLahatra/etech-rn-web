@@ -29,8 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new RNFirebasePackage());
-        packages.add(new RNFirebaseMessagingPackage());
-        packages.add(new RNFirebaseNotificationsPackage());
+          packages.add(new RNFirebaseMessagingPackage());
+          packages.add(new RNFirebaseNotificationsPackage());
           return packages;
         }
 
