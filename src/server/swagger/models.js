@@ -559,6 +559,46 @@ module.exports = {
         },
       },
     },
+    '/device/send/pushall': {
+      post: {
+        tags: [
+          'Device',
+        ],
+        description: 'Create new Device in system',
+        security: [
+          {
+            JWT: [],
+          },
+        ],
+        produces: [
+          'application/json',
+        ],
+        responses: {
+          200: {
+            description: 'OK',
+            schema: {
+              $ref: '#/definitions/Push',
+            },
+          },
+          400: {
+            description: 'Bad Request',
+            schema: {
+              $ref: '#/definitions/Errors',
+            },
+          },
+          401: {
+            description: 'KO',
+            schema: {
+              properties: {
+                error: {
+                  type: 'Invalid token.',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
     '/device/send/push': {
       post: {
         tags: [

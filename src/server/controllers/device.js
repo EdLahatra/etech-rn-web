@@ -64,6 +64,19 @@ module.exports = {
     const data = {
       registration_ids: [req.body.registration_ids],
       notification: {
+        body: 'Push Notification for POC REACT NATIVE WEB',
+        title: 'POC REACT NATIVE WEB',
+      },
+    };
+    const push = await post(data);
+    return res.json(push);
+  },
+  pushAll: async (req, res) => {
+    const device = await Device.find();
+
+    const data = {
+      registration_ids: device.map(i => i.token),
+      notification: {
           body: 'Push Notification for POC REACT NATIVE WEB',
           title: 'POC REACT NATIVE WEB',
       },

@@ -12,11 +12,15 @@ import { connect } from 'react-redux';
 import * as firebase from 'firebase/app';
 import 'firebase/messaging';
 
+import { post } from '../services/technique/api';
+
 import mapStateToProps from '../services/redux/mapStateToProps';
 import mapDispatchToProps from '../services/redux/mapDispatchToProps';
 
 import AppNavigation from './navigation';
 import AuthStack from './Auth';
+
+const { detect } = require('detect-browser');
 
 // import { messaging } from './init-fcm';
 
@@ -38,6 +42,7 @@ class AppMain extends React.Component {
     super(props);
     this.state = {
       isReady: false,
+      token: null,
     };
   }
 
@@ -54,9 +59,11 @@ class AppMain extends React.Component {
         console.log({ messaging });
 
         messaging.requestPermission()
-          .then(async function () {
+          .then(async() => {
             const token = await messaging.getToken();
+            this.setState({ token });
             console.log({ token });
+            this.sendToken(token);
             const notification = new Notification(token);
           })
           .catch(function (err) {
@@ -82,13 +89,34 @@ class AppMain extends React.Component {
     }
   }
 
+  sendToken = async (token) => {
+    let uuid = navigator.buildID;
+    let deviseInfo = navigator.appCodeName + navigator.appName;
+    if (detect && typeof detect === 'function') {
+      const browser = detect();
+      uuid = browser.version + browser.os;
+      deviseInfo = browser.os + browser.name;
+    }
+    console.log({ uuid, deviseInfo });
+    const { user } = this.props.users;
+    if (user && user.token) {
+      const data = {
+        uuid,
+        deviseInfo,
+        token: token || this.state.token,
+      };
+      const tk = await post('device', data, user.token);
+      console.log({ tk, data });
+    }
+  }
+
   render() {
     const { user } = this.props.users;
 
     if (user && user.token) {
       return <AppNavigation {...this.props} />;
     }
-    return <AuthStack />;
+    return <AuthStack sendToken={this.sendToken} />;
   }
 }
 
