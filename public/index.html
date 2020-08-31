@@ -50,18 +50,22 @@
         Notification.requestPermission(function (status) {
           console.log("REGISTERED status status status!", status);
           // Cela permet d'utiliser Notification.permission avec Chrome/Safari
-          if (status === "granted" && "serviceWorker" in navigator) {
+          console.log('typeof =====>', typeof navigator.serviceWorker.register);
+          
+          if (status === "granted" && typeof navigator.serviceWorker === 'object') {
             window.alert('requestPermission =====>', status.toString());
             navigator.serviceWorker
               .register("./firebase-messaging-sw.js")
               .then(function(registration) {
                 // firebase.messaging().useServiceWorker(registration);
+                window.alert('typeof navigator.serviceWorker =====> YES');
                 console.log("Registration successful, scope is:", registration);
                 registration.showNotification('Successfully subscribed!', {body: 'TEST'});
                 const notify = new Notification('Successfully subscribed!');
                 console.log({ notify });
               })
               .catch(function(err) {
+                window.alert('typeof navigator.serviceWorker =====> ERROR');
                 console.log("Service worker registration failed, error:", err);
               });
           }
