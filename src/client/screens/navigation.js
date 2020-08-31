@@ -6,6 +6,7 @@ import CreateCompteScreen from './Compte';
 import EntityScreen from './Home';
 import Operation from './Operation';
 import MapsScreen from './Maps';
+import DeviceScreen from './Device';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +24,13 @@ export default function App() {
           component={Operation}
           options={{
             tabBarLabel: 'Home',
+          }}
+        />
+        <Tab.Screen
+          name="Devices"
+          component={DeviceScreen}
+          options={{
+            tabBarLabel: 'Devices',
           }}
         />
         <Tab.Screen

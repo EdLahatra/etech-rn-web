@@ -3,10 +3,16 @@ import users from '../constants/users';
 
 const initialState = {
   list: [],
+  devices: [],
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case constants.getDevices:
+      return {
+        ...state,
+        devices: action.payload,
+      };
     case constants.getComptes:
       return {
         ...state,

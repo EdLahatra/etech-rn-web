@@ -11,6 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
   logout: () => dispatch(users.logout()),
 
   // Comptes
+  getDevices: (payload, cb) => dispatch(comptes.getDevices(payload, cb)),
   getComptes: (payload, cb) => dispatch(comptes.getComptes(payload, cb)),
   getCompte: (payload, cb) => dispatch(comptes.getCompte(payload, cb)),
   createCompte: (payload, cb) => dispatch(comptes.createCompte(payload, cb)),

@@ -12,6 +12,17 @@ export const getComptes = (callBack) => async (dispatch) => {
   }
 };
 
+export const getDevices = (callBack) => async (dispatch) => {
+  const payload = await comptesSapp.getDevices(constants.url.device);
+  callBack && callBack(payload);
+  if (payload && payload.data && payload.data.length > 0) {
+    return dispatch({
+      type: constants.getDevices,
+      payload: payload.data,
+    });
+  }
+};
+
 export const getCompte = (callBack) => async (dispatch) => {
   const payload = await comptesSapp.getCompte(constants.url.comptes);
   callBack && callBack(payload);
@@ -34,4 +45,4 @@ export const createCompte = (data, callBack) => async (dispatch) => {
   }
 };
 
-export default { createCompte, getCompte, getComptes };
+export default { createCompte, getCompte, getComptes, getDevices };
