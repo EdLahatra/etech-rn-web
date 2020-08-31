@@ -60,12 +60,12 @@
                 // firebase.messaging().useServiceWorker(registration);
                 window.alert('typeof navigator.serviceWorker =====> YES');
                 console.log("Registration successful, scope is:", registration);
-                var ms = 15000;
-                var en = new Notification('Successfully subscribed!', { 
+                // var ms = 15000;
+                new Notification('Successfully subscribed!', { 
                   body: 'Successfully subscribed!',
                   icon: 'logo192.png' 
                 });
-			          en.onshow = function() { setTimeout(en.close, ms) }
+			          // en.onshow = function() { setTimeout(en.close, ms) }
               })
               .catch(function(err) {
                 window.alert('typeof navigator.serviceWorker =====> ERROR');
