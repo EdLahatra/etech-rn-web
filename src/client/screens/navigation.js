@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CreateCompteScreen from './Compte';
 import EntityScreen from './Home';
 import Operation from './Operation';
+import MapsScreen from './Maps';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +23,13 @@ export default function App() {
           component={Operation}
           options={{
             tabBarLabel: 'Home',
+          }}
+        />
+        <Tab.Screen
+          name="Maps"
+          component={MapsScreen}
+          options={{
+            tabBarLabel: 'Maps',
           }}
         />
         <Tab.Screen

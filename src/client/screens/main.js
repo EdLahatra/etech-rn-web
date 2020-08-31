@@ -36,7 +36,7 @@ class AppMain extends React.Component {
     const channel = new firebase.notifications.Android.Channel(
       'defaultId',
       'channelName',
-      firebase.notifications.Android.Importance.Max
+      firebase.notifications.Android.Importance.Max,
     ).setDescription('A natural description of the channel');
     firebase.notifications().android.createChannel(channel);
 
@@ -73,8 +73,8 @@ class AppMain extends React.Component {
         this.requestPermission();
     }
   }
-  
-  //2
+
+  // 2
   async requestPermission() {
     try {
         await firebase.messaging().requestPermission();
@@ -85,8 +85,8 @@ class AppMain extends React.Component {
         console.log('permission rejected');
     }
   }
-  
-  //3
+
+  // 3
   async getToken() {
     let fcmToken = await AsyncStorage.getItem('fcmToken');
     if (!fcmToken) {
@@ -101,13 +101,13 @@ class AppMain extends React.Component {
     console.log('fcmToken fcmToken', fcmToken);
   }
 
-  showNotification(notification){
-    console.log("notif",notification);
+  showNotification(notification) {
+    console.log('notif', notification);
    // if (Platform.OS === 'android') {
-      //console.log("notif",notification);
+      // console.log("notif",notification);
       const localNotification = new firebase.notifications.Notification({
           sound: 'default',
-          show_in_foreground: true
+          show_in_foreground: true,
         })
         .setNotificationId(notification.notificationId)
         .setTitle(notification.title)
@@ -117,23 +117,23 @@ class AppMain extends React.Component {
         .android.setChannelId('defaultId') // e.g. the id you chose above
         .android.setSmallIcon('ic_launcher')
         .android.setPriority(firebase.notifications.Android.Priority.High);
-  
-        //console.log("local", localNotification);
+
+        // console.log("local", localNotification);
       firebase.notifications()
         .displayNotification(localNotification)
-        .catch(err => console.error("error ",err));
-    //}
+        .catch(err => console.error('error ', err));
+    // }
   }
-  
+
   async createNotificationListeners() {
     /*
     * Triggered when a particular notification has been received in foreground
     * */
     this.notificationListener = firebase.notifications().onNotification((notification) => {
-      console.log("notification ", notification);
+      console.log('notification ', notification);
       this.showNotification(notification);
     });
-  
+
     /*
     * If your app is in background, you can listen for when a notification is clicked / tapped / opened as follows:
     * */
@@ -141,9 +141,9 @@ class AppMain extends React.Component {
         const { title, body } = notificationOpen.notification;
         console.log({ title, body });
         // this.props.isOpening({isNotif: true, url: "notification"});
-        //this.showAlert(title, body);
+        // this.showAlert(title, body);
     });
-  
+
     /*
     * If your app is closed, you can check if it was opened by a notification being clicked / tapped / opened as follows:
     * */
@@ -157,11 +157,11 @@ class AppMain extends React.Component {
     * Triggered for data only payload in foreground
     * */
     this.messageListener = firebase.messaging().onMessage((message) => {
-      //process data message
+      // process data message
       console.log(JSON.stringify(message));
     });
   }
-  
+
   componentWillUnmount() {
     this.notificationListener();
     this.notificationOpenedListener();

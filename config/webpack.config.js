@@ -296,6 +296,7 @@ module.exports = function(webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
+        'react-native-maps': 'react-native-web-maps',
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -388,6 +389,7 @@ module.exports = function(webpackEnv) {
                     {
                       alias: {
                         '^react-native$': 'react-native-web',
+                        'react-native-maps': 'react-native-web-maps',
                       },
                     },
                   ],
@@ -424,6 +426,7 @@ module.exports = function(webpackEnv) {
                     {
                       alias: {
                         '^react-native$': 'react-native-web',
+                        'react-native-maps': 'react-native-web-maps',
                       },
                     },
                   ],
