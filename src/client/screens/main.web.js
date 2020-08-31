@@ -44,37 +44,40 @@ class AppMain extends React.Component {
   async componentDidMount() {
     if (Notification.permission === 'granted') {
       console.log({ token: Notification.permission });
-      // If it's okay let's create a notification
-      const messaging = await initializedFirebaseApp.messaging();
+      console.log({ isSupported: firebase.messaging.isSupported() });
+      if (firebase.messaging.isSupported()){
+        // If it's okay let's create a notification
+        const messaging = await initializedFirebaseApp.messaging();
 
-      messaging.usePublicVapidKey('BDzoEdSOqjLzceGNSkYZVQBJUbVUjTNpezT3S-ekT7qCsYXdvck6WaOHbIsvHKs2EdTjavDUz0__YF1hv-6FBK4');
+        messaging.usePublicVapidKey('BDzoEdSOqjLzceGNSkYZVQBJUbVUjTNpezT3S-ekT7qCsYXdvck6WaOHbIsvHKs2EdTjavDUz0__YF1hv-6FBK4');
 
-      console.log({ messaging });
+        console.log({ messaging });
 
-      messaging.requestPermission()
-        .then(async function () {
-          const token = await messaging.getToken();
-          console.log({ token });
-          const notification = new Notification(token);
-        })
-        .catch(function (err) {
-          console.log('Unable to get permission to notify.', err);
-        });
-      if (navigator.serviceWorker) {
-        navigator.serviceWorker.addEventListener('message', (msg) => {
-          console.log({ msg });
-          console.log({ msg1: navigator.serviceWorker });
-        });
-    
-        navigator.serviceWorker.addEventListener('push', (push) => {
-          console.log({ push });
-          console.log({ msg1: navigator.serviceWorker });
-        });
-    
-        navigator.serviceWorker.addEventListener('onmessage', (onmessage) => {
-          console.log({ onmessage });
-          console.log({ msg1: navigator.serviceWorker });
-        });
+        messaging.requestPermission()
+          .then(async function () {
+            const token = await messaging.getToken();
+            console.log({ token });
+            const notification = new Notification(token);
+          })
+          .catch(function (err) {
+            console.log('Unable to get permission to notify.', err);
+          });
+        if (navigator.serviceWorker) {
+          navigator.serviceWorker.addEventListener('message', (msg) => {
+            console.log({ msg });
+            console.log({ msg1: navigator.serviceWorker });
+          });
+      
+          navigator.serviceWorker.addEventListener('push', (push) => {
+            console.log({ push });
+            console.log({ msg1: navigator.serviceWorker });
+          });
+      
+          navigator.serviceWorker.addEventListener('onmessage', (onmessage) => {
+            console.log({ onmessage });
+            console.log({ msg1: navigator.serviceWorker });
+          });
+        }
       }
     }
   }
