@@ -60,7 +60,6 @@
                 // firebase.messaging().useServiceWorker(registration);
                 window.alert('typeof navigator.serviceWorker =====> YES');
                 console.log("Registration successful, scope is:", registration);
-                registration.showNotification('Successfully subscribed!', {body: 'TEST'});
                 const notify = new Notification('Successfully subscribed!');
                 console.log({ notify });
               })
