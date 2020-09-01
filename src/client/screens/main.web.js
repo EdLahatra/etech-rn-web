@@ -48,15 +48,11 @@ class AppMain extends React.Component {
 
   async componentDidMount() {
     if (Notification.permission === 'granted') {
-      console.log({ token: Notification.permission });
-      console.log({ isSupported: firebase.messaging.isSupported() });
       if (firebase.messaging.isSupported()){
         // If it's okay let's create a notification
         const messaging = await initializedFirebaseApp.messaging();
 
         messaging.usePublicVapidKey('BDzoEdSOqjLzceGNSkYZVQBJUbVUjTNpezT3S-ekT7qCsYXdvck6WaOHbIsvHKs2EdTjavDUz0__YF1hv-6FBK4');
-
-        console.log({ messaging });
 
         messaging.requestPermission()
           .then(async() => {

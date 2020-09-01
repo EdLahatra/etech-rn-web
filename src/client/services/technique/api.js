@@ -30,6 +30,7 @@ export const get = async (url, token) => {
 };
 
 export const post = async (url, data, token) => {
+  console.log(`${baseURL}${pathApi}${url}`);
   try {
     const res = await axios.post(`${baseURL}${pathApi}${url}`, data, {
       headers: headers(token),
@@ -37,7 +38,7 @@ export const post = async (url, data, token) => {
     // console.log('post res ------------>', res);
     return res;
   } catch (e) {
-    // console.log('e.response', e.response);
+    console.log('e.response', e.response);
 
     const errors = e && e.response ? e.response.data : { error: true };
     // console.log('post errors ------------>', errors);

@@ -26,9 +26,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, '../../build'))).set('static', path.join(__dirname, 'static'));
-app.get('/', (_, res) => {
-  res.json({ message: 'It works!' });
-});
+// app.get('/', (_, res) => {
+//   res.json({ message: 'It works!' });
+// });
 
 app.use('/api/docs', swaggerUi.serve);
 app.get('/api/docs', swaggerUi.setup(swaggerDocument, false, options, '.swagger-ui .topbar { background-color: red }'));
