@@ -11,6 +11,8 @@ import {
 import styles from './styles';
 import { entity } from '../../../config/constants';
 
+import state from '../../services/redux/constants/state';
+
 const signTitle = 'Create Entity';
 
 const SignInScreen = (props) => {
@@ -33,7 +35,7 @@ const SignInScreen = (props) => {
 
   const createCompte = async () => {
     setMessage('');
-    const data = { attribut: email, attribut1: password, attribut2: username };
+    const data = { attribut: email, attribut1: password, attribut2: username, state: state.created };
     await createEntity(data, (res) => callBack(res));
   };
 

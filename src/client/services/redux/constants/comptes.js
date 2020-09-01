@@ -8,5 +8,6 @@ export default {
   getDevices: 'getDevices',
   getCompte: 'getCompte',
   createCompte: 'createCompte',
+  createCompteOff: 'createCompteOff',
   url,
 };

@@ -45,4 +45,9 @@ export const createCompte = (data, callBack) => async (dispatch) => {
   }
 };
 
-export default { createCompte, getCompte, getComptes, getDevices };
+export const createCompteOff = (data) => async (dispatch) => dispatch({
+  type: constants.createCompteOff,
+  payload: data,
+});
+
+export default { createCompte, getCompte, getComptes, getDevices, createCompteOff };

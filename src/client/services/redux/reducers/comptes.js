@@ -13,6 +13,11 @@ export default (state = initialState, action) => {
         ...state,
         devices: action.payload,
       };
+      case constants.createCompteOff:
+        return {
+          ...state,
+          list: [...state.list, action.payload],
+        };
     case constants.getComptes:
       return {
         ...state,

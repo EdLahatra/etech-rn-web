@@ -12,6 +12,7 @@ import Layout from '../Layout';
 import Create from './create';
 
 class Home extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +22,14 @@ class Home extends React.Component {
   }
 
   createEntity = async (data, callBack) => {
-    this.props.createCompte(data, callBack);
+    // this.props.createCompte(data, callBack);
+    this.props.createCompteOff(data, callBack).then(() => {
+      console.log('network while sync ', this.props.network);
+      if (this.props.network.network === true) {
+        this.props.synchronize(this.props.comptes);
+      }
+    });
+
   }
 
   render() {
